@@ -108,6 +108,13 @@ L<Alien::Build::Plugin::Build::Autoconf> on Windows it is
 called using the MSYS perl due to its shebang line.
 This leads to issues with path separators in C<$ENV{PKG_CONFIG_PATH}>.
 
+This plugin generates a wrapper script that ensures the perl
+used for the alienfile is also used to call the pkg-config.pl
+script.
+
+It has (should have) no effect on non-Windows operating systems,
+or when the pure-perl pkg-config is not being used.
+
 =head1 SEE ALSO
 
 =over 4
