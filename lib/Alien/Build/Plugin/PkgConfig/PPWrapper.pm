@@ -29,7 +29,7 @@ sub init {
               || File::Which::which ('pkg-config');
 
         if (!defined $pk) {
-            $build->log ("Could not locate ppkg-config or pkg-config in your path:\n");
+            $build->log ("Could not locate ppkg-config or pkg-config in your path\n");
             return $orig->($build, @args);
         }
 
@@ -96,7 +96,9 @@ version 0.01
     share {
         #  other commands to download, unpack etc.,
         #  and then:
-        plugin 'PkgConfig::Wrapper';
+        plugin 'PkgConfig::PPWrapper';
+        
+        #  followed by any build commands
     };
 
  1;
@@ -108,8 +110,8 @@ L<Alien::Build::Plugin::Build::Autoconf> on Windows it is
 called using the MSYS perl due to its shebang line.
 This leads to issues with path separators in C<$ENV{PKG_CONFIG_PATH}>.
 
-This plugin generates a wrapper script that ensures the perl
-used for the alienfile is also used to call the pkg-config.pl
+This plugin generates a wrapper script that ensures that the perl
+running the alienfile is also used to call the pkg-config.pl
 script.
 
 It has (should have) no effect on non-Windows operating systems,
